@@ -2,11 +2,11 @@
 # vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "debian/stretch64"
+  config.vm.box = "debian/buster64"
   config.disksize.size = '40GB'
 
   config.vm.synced_folder ".", "/vagrant", disabled: true
-  config.vm.synced_folder ".", "/data"
+  config.vm.synced_folder ".", "/data", automount: true
 
   config.vm.provider "virtualbox" do |vb|
     vb.cpus = 4

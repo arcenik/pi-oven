@@ -11,12 +11,12 @@ RUN mkdir -p /etc/systemd/system/getty@tty1.service.d
 COPY files/noclear.conf /etc/systemd/system/getty@tty1.service.d
 COPY files/fstab /etc/fstab
 RUN if ! id -u pi >/dev/null 2>&1; then adduser --disabled-password --gecos "" pi; fi
-RUN set -x &&\
-  echo "pi:raspberry" | chpasswd &&\
-  echo "root:root" | chpasswd &&\
-  install -o root -g root -d /root/.ssh &&\
-  install -o root -g root -m 0600 /tmp/authorized_keys /root/.ssh/authorized_keys &&\
-  install -o pi -g pi -d /home/pi/.ssh &&\
+RUN set -xe ;\
+  echo "pi:raspberry" | chpasswd ;\
+  echo "root:root" | chpasswd ;\
+  install -o root -g root -d /root/.ssh ;\
+  install -o root -g root -m 0600 /tmp/authorized_keys /root/.ssh/authorized_keys ;\
+  install -o pi -g pi -d /home/pi/.ssh ;\
   install -o pi -g pi -m 0600 /tmp/authorized_keys /home/pi/.ssh/authorized_keys
 
 # 02-net-tweaks

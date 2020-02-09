@@ -90,7 +90,7 @@ IMGID="$(dd if=${IMG_FILE} skip=440 bs=1 count=4 2>/dev/null | xxd -e | cut -f 2
 BOOT_PARTUUID="${IMGID}-01"
 ROOT_PARTUUID="${IMGID}-02"
 
-sed -i "s/stretch main ui staging/stretch main ui/" "/tmp/mnt/etc/apt/sources.list.d/raspi.list"
+sed -i "s/buster main ui staging/buster main ui/" "/tmp/mnt/etc/apt/sources.list.d/raspi.list"
 
 echo "namespace 8.8.8.8" > "/tmp/mnt/etc/resolv.conf"
 
