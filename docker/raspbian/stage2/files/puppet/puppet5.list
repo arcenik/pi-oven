@@ -1,0 +1,5 @@
+# Puppet 5 stretch Repository
+deb http://apt.puppetlabs.com stretch puppet5
+
+# Puppet 5 stretch Source Repository
+deb-src http://apt.puppetlabs.com stretch puppet5
