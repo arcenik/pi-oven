@@ -15,7 +15,7 @@ then
     qemu-debootstrap --components=main,contrib,non-free \
             --arch armhf \
             --keyring lib/raspberrypi.gpg \
-            stretch /opt/raspbian/rootfs http://mirrordirector.raspbian.org/raspbian/
+            buster /opt/raspbian/rootfs http://mirrordirector.raspbian.org/raspbian/
 fi
 
 docker image build \

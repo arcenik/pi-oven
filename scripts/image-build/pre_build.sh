@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -xe
 
 if [ $# != 1 ]; then
     echo "./pre_build.sh [container id]"

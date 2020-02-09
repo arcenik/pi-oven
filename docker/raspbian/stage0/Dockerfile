@@ -5,19 +5,15 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN chown -R man /var/cache/man
 
 # 00-configure-apt
-COPY files/sources.list /etc/apt
-COPY files/raspi.list /etc/apt/sources.list.d
-RUN rm -f /etc/apt/apt.conf.d/51cache
-COPY files/raspberrypi.gpg.key /tmp
-RUN apt-key add /tmp/raspberrypi.gpg.key
-RUN apt-get update
-RUN apt-get dist-upgrade -y
-
-# 01-locale
+COPY files/apt/sources.list /etc/apt
+COPY files/apt/raspi.list /etc/apt/sources.list.d
 COPY files/debconf debconf
-RUN debconf-set-selections debconf && \
-    rm -rf debconf
-RUN apt-get install -y locales
+COPY files/apt/82B129927FA3303E.key /tmp/82B129927FA3303E.key
 
-# 02-firmware
-RUN apt-get install -y raspberrypi-bootloader
+RUN set -xe ;\
+  rm -fv /etc/apt/apt.conf.d/51cache ;\
+  apt-key add /tmp/82B129927FA3303E.key ;\
+  apt update ; DEBIAN_FRONTEND=noninteractive apt full-upgrade -y ;\
+  debconf-set-selections debconf ;\
+  rm -rf debconf ;\
+  DEBIAN_FRONTEND=noninteractive apt install -y locales raspberrypi-bootloader
